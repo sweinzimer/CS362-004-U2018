@@ -1161,7 +1161,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
         state->discard[i][state->discardCount[i]] = state->deck[i][state->deckCount[i]--];
         state->deckCount[i]--;
         state->discardCount[i]++;
-        state->deck[i][state->deckCount[i]--] = curse; //Top card now a curse
+        state->deck[i][state->deckCount[i]--] = curse; //Top card now a curse        
       }
     }
     return 0;
