@@ -1,4 +1,4 @@
-CFLAGS = -Wall -fpic -coverage -lm -std=c99
+CFLAGS = -Wall -fpic -coverage -lm -std=c99 -fno-stack-protector
 
 unittest1: unittest1.c dominion.o rngs.o
 	gcc  -o unittest1 -g  unittest1.c dominion.o rngs.o $(CFLAGS)
@@ -11,7 +11,7 @@ unittest3: unittest3.c dominion.o rngs.o
 
 unittest4: unittest4.c dominion.o rngs.o
 	gcc  -o unittest4 -g  unittest4.c dominion.o rngs.o $(CFLAGS)
-	
+	cle
 cardtest1: cardtest1.c dominion.o rngs.o
 	gcc  -o cardtest1 -g  cardtest1.c dominion.o rngs.o $(CFLAGS)
 
@@ -23,7 +23,14 @@ cardtest3: cardtest3.c dominion.o rngs.o
 
 cardtest4: cardtest4.c dominion.o rngs.o
 	gcc  -o cardtest4 -g  cardtest4.c dominion.o rngs.o $(CFLAGS)
+randomtestadventurer: randomtestadventurer.c dominion.o rngs.o
+	gcc  -o randomtestadventurer -g  randomtestadventurer.c dominion.o rngs.o $(CFLAGS)
 
+randomtestcard1: randomtestcard1.c dominion.o rngs.o
+	gcc  -o randomtestcard1 -g  randomtestcard1.c dominion.o rngs.o $(CFLAGS)
+
+randomtestcard2: randomtestcard2.c dominion.o rngs.o
+	gcc  -o randomtestcard2 -g  randomtestcard2.c dominion.o rngs.o $(CFLAGS)
 
 rngs.o: rngs.h rngs.c
 	gcc -c rngs.c -g  $(CFLAGS)
@@ -65,6 +72,21 @@ rununittests: unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardte
 	./cardtest4 &> unittestresult.out
 	gcov -f -b dominion.c >> unittestresult.out
 	cat dominion.c.gcov >> unittestresult.out
+
+runrandomadventurer: randomtestadventurer 
+	./randomtestadventurer &> randomtestadventurer.out
+	gcov -f -b dominion.c >> randomtestadventurer.out
+	cat dominion.c.gcov >> randomtestadventurer.out
+
+runrandomcard1: randomtestcard1 
+	./randomtestcard1 &> randomtestcard1.out
+	gcov -f -b dominion.c >> randomtestcard1.out
+	cat dominion.c.gcov >> randomtestcard1.out
+
+runrandomcard2: randomtestcard2
+	./randomtestcard2 &> randomtestcard2.out
+	gcov -f -b dominion.c >> randomtestcard2.out
+	cat dominion.c.gcov >> randomtestcard2.out
 
 
 player: player.c interface.o
