@@ -34,7 +34,7 @@ int main()
     printf("Testing smithy.\n");
 
     r = initializeGame(currPlayers, k, 6, &G);
-
+7
     printf("initializeGame(4, k, 1, &G) = %d\n", r);
     assert(r == 0);
     //end turn
@@ -45,11 +45,10 @@ int main()
     //check 3 cards drawn and 1 discarded
 
     int check1 = IsEqual(G.handCount[0] + 2, testG.handCount[0]);
-     printf("Inital Cards: %d/ Now Cards: %d\n", G.handCount[0], testG.handCount[0]);
+      printf("Inital Cards: %d/ Now Cards: %d\n", G.handCount[0], testG.handCount[0]);
     if (check1 == 0)
     {
         printf("Failed to draw\n");
-        printf("%d\n", testG.handCount[0]);
         suc = 1;
     }
     int check2 = testG.discardCount[0] > G.discardCount[0];
